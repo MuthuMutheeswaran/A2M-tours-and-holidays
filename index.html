@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2M Tours & Holidays - Premium Travel Experiences</title>
+    
+    <!-- Bootstrap + Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-main: #f5f7fb;
+            --bg-card: #ffffff;
+
+            --text-main: #0f172a;
+            --text-muted: #4b5563;
+            --text-soft: #6b7280;
+
+            --primary: #2563eb;
+            --primary-soft: #dbeafe;
+            --primary-dark: #1d4ed8;
+
+            --border-soft: #e5e7eb;
+            --border-strong: #cbd5f5;
+            --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 0% 0%, rgba(219, 234, 254, 0.7), transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(224, 242, 254, 0.7), transparent 55%),
+                var(--bg-main);
+            color: var(--text-main);
+        }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            transition: all 0.35s ease;
+            padding: 1.1rem 0;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+            padding: 0.85rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .navbar-brand span.logo-text {
+            background: linear-gradient(120deg, #2563eb, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brand-pill {
+            font-size: 0.7rem;
+            padding: 0.18rem 0.6rem;
+            border-radius: 999px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            font-weight: 500;
+            margin: 0 0.55rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            position: relative;
+            padding-bottom: 0.3rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            transform: translateX(-50%);
+            height: 2px;
+            border-radius: 999px;
+            background: var(--primary);
+            transition: width 0.25s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 55%;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2831,41,55, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* ---------- HERO ---------- */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 7rem 0 4rem;
+        }
+
+        .hero-bg-shape {
+            position: absolute;
+            right: -160px;
+            top: -120px;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #dbeafe, transparent 60%);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.9rem;
+            border-radius: 999px;
+            background: #eef2ff;
+            border: 1px solid #e0e7ff;
+            color: #4b5563;
+            font-size: 0.78rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .hero-pill span.dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #16a34a;
+        }
+
+        .hero-title {
+            font-size: 3.1rem;
+            font-weight: 800;
+            color: #020617;
+            margin-bottom: 0.7rem;
+            line-height: 1.1;
+        }
+
+        .hero-title span.highlight {
+            color: var(--primary-dark);
+        }
+
+        .hero-tagline {
+            font-size: 1.02rem;
+            color: var(--text-soft);
+            font-weight: 500;
+            margin-bottom: 1.3rem;
+        }
+
+        .hero-description {
+            font-size: 0.98rem;
+            color: var(--text-muted);
+            line-height: 1.85;
+            margin-bottom: 2rem;
+            max-width: 620px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2.1rem;
+        }
+
+        .hero-badge {
+            font-size: 0.78rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .cta-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 0.9rem 2.4rem;
+            font-size: 0.96rem;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 14px 30px rgba(37, 99, 235, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 16px 34px rgba(37, 99, 235, 0.35);
+            color: #ffffff;
+        }
+
+        .cta-secondary {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+        }
+
+        .cta-secondary span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ---------- GLASS CARD / POPULAR TRIPS ---------- */
+        .glass-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .preview-trips {
+            margin-top: 0.5rem;
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.1rem;
+        }
+
+        .preview-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #9ca3af;
+        }
+
+        .preview-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid #22c55e;
+            color: #15803d;
+            background: #ecfdf3;
+        }
+
+        .trip-item {
+            background: #f9fafb;
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            transition: all 0.22s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .trip-item:hover {
+            background: #f3f4ff;
+            transform: translateY(-1px);
+            border-color: #d1d5db;
+        }
+
+        .trip-name {
+            font-weight: 600;
+            color: #111827;
+            font-size: 0.95rem;
+        }
+
+        .trip-tagline {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 0.2rem;
+        }
+
+        .trip-price {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- SECTION TITLE ---------- */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.6rem;
+            color: #0f172a;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+            max-width: 540px;
+            margin: 0 auto 3rem;
+        }
+
+        /* ---------- FEATURED PACKAGES ---------- */
+        .featured-section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .package-card {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-soft);
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.12);
+            border-color: var(--border-strong);
+        }
+
+        .package-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background: #e5e7eb;
+        }
+
+        .package-content {
+            padding: 1.4rem 1.4rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.45rem;
+        }
+
+        .package-duration {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .package-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .price-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.15);
+            border: 1px solid #bfdbfe;
+        }
+
+        /* ---------- HOW IT WORKS ---------- */
+        .how-it-works {
+            padding: 5rem 0;
+            background: #ffffff;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .step-card {
+            text-align: left;
+            padding: 1.9rem 1.7rem;
+            background: #f9fafb;
+            border-radius: 18px;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: all 0.25s ease;
+            height: 100%;
+        }
+
+        .step-card:hover {
+            background: #f3f4ff;
+            border-color: #d1d5db;
+            transform: translateY(-4px);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.55rem;
+        }
+
+        .step-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.92rem;
+        }
+
+        /* ---------- CONTACT ---------- */
+        .contact-section {
+            padding: 5rem 0 4.2rem;
+        }
+
+        .contact-card {
+            max-width: 840px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 2.7rem 2.4rem;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+            border: 1px solid #e5e7eb;
+        }
+
+        .contact-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: #4b5563;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-value {
+            font-size: 1.25rem;
+            color: #111827;
+            font-weight: 700;
+        }
+
+        .contact-value a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-value a:hover {
+            color: var(--primary);
+        }
+
+        .contact-note {
+            margin-top: 1.4rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: #0f172a;
+            color: #9ca3af;
+            padding: 2.4rem 0 2rem;
+            text-align: center;
+            border-top: 1px solid #111827;
+        }
+
+        footer p {
+            margin-bottom: 0.4rem;
+        }
+
+        .badge-footer {
+            font-size: 0.78rem;
+            padding: 0.22rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid #4b5563;
+            background: #020617;
+            color: #e5e7eb;
+        }
+
+        /* ---------- CHAT BUBBLE ---------- */
+        .chat-bubble {
+            position: fixed;
+            bottom: 26px;
+            right: 24px;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 999px;
+            box-shadow: 0 18px 40px rgba(37, 99, 235, 0.4);
+            font-weight: 600;
+            z-index: 1000;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .chat-bubble span.icon {
+            font-size: 1.2rem;
+        }
+
+        .chat-bubble:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 992px) {
+            .hero-section {
+                padding-top: 6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-tagline {
+                font-size: 0.96rem;
+            }
+
+            .hero-description {
+                font-size: 0.94rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-bg-shape {
+                display: none;
+            }
+
+            .chat-bubble {
+                bottom: 18px;
+                right: 16px;
+                font-size: 0.82rem;
+                padding: 0.7rem 1.2rem;
+            }
+
+            .contact-card {
+                padding: 2.2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <span class="logo-text">A2M Tours</span>
+                <span class="brand-pill">Group Travel Desk</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#featured">Featured</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#find">Find a Package</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#trips">My Trips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section" id="home">
+        <div class="hero-bg-shape"></div>
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <div class="hero-content animate__animated animate__fadeInUp">
+                        <div class="hero-pill">
+                            <span class="dot"></span>
+                            AI-enabled group travel planning for colleges & offices
+                        </div>
+                        <h1 class="hero-title">
+                            <span class="highlight">A2M Tours &amp; Holidays</span><br/>
+                            Structured. Safe. Hassle-free.
+                        </h1>
+                        <p class="hero-tagline">Goa · Manali · Kerala · Custom Group Itineraries</p>
+                        <p class="hero-description">
+                            A2M organizes college tours, office outings and family group vacations across India.
+                            Use our AI-powered chatbot to browse featured itineraries, customize packages and
+                            generate clean booking documents in minutes.
+                        </p>
+
+                        <div class="hero-badges">
+                            <span class="hero-badge">Instant Itinerary Drafts</span>
+                            <span class="hero-badge">Invoice & Costing Support</span>
+                            <span class="hero-badge">Zoho Ecosystem Ready</span>
+                        </div>
+
+                        <div class="cta-wrap">
+                            <a href="#featured" class="cta-button">
+                                View Featured Trips
+                                <span>↗</span>
+                            </a>
+                            <div class="cta-secondary">
+                                or <span>chat with our bot</span> to build a custom package.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="glass-card animate__animated animate__fadeInRight preview-trips" data-aos="fade-left">
+                        <div class="preview-header">
+                            <div>
+                                <div class="preview-label">Popular Destinations</div>
+                                <h5 style="font-weight: 600; color: #111827; margin-top: 0.25rem;">Trending Group Packages</h5>
+                            </div>
+                            <span class="preview-status">Sample Quotes</span>
+                        </div>
+
+                        <div class="trip-item">
+                            <div>
+                                <span class="trip-name">Goa Beach Escape</span>
+                                <div class="trip-tagline">3D/2N · Beach resort · Activities</div>
+                            </div>
+                            <span class="trip-price">₹7,499</span>
+                        </div>
+                        <div class="trip-item">
+                            <div>
+                                <span class="trip-name">Manali Snow Adventure</span>
+                                <div class="trip-tagline">5D/4N · Solang Valley · Snow games</div>
+                            </div>
+                            <span class="trip-price">₹12,999</span>
+                        </div>
+                        <div class="trip-item">
+                            <div>
+                                <span class="trip-name">Kerala Backwater Escape</span>
+                                <div class="trip-tagline">4D/3N · Houseboat · Sightseeing</div>
+                            </div>
+                            <span class="trip-price">₹9,999</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PACKAGES -->
+    <section class="featured-section" id="featured">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured Packages</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="50">
+                Pre-designed group itineraries that work well for colleges, offices and family groups.
+                These can be used as templates inside your Zoho chatbot.
+            </p>
+            <div class="row g-4">
+                <!-- Goa -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="package-card">
+                        <div style="position: relative;">
+                            <!-- Goa beach image -->
+                            <img 
+                                src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=900&q=80"
+                                alt="Goa Beach" 
+                                class="package-image img-fluid"
+                                loading="lazy"
+                            >
+                            <div class="price-badge">From ₹7,499</div>
+                        </div>
+                        <div class="package-content">
+                            <h3 class="package-title">Goa Beach Escape</h3>
+                            <p class="package-duration">3 Days / 2 Nights · Group Special</p>
+                            <p class="package-desc">
+                                Pristine beaches, water sports and curated nightlife with heritage sightseeing.
+                                Ideal for college batches and friends groups with clear inclusions and supervision.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manali -->
+                <!-- Manali -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="package-card">
+                        <div style="position: relative;">
+                            <!-- NEW Manali / snow mountains image (Pexels) -->
+                            <img
+                                src="https://images.pexels.com/photos/3836299/pexels-photo-3836299.jpeg?auto=compress&cs=tinysrgb&w=900"
+                                alt="Manali Snow"
+                                class="package-image img-fluid"
+                                loading="lazy"
+                            >
+                            <div class="price-badge">From ₹12,999</div>
+                        </div>
+                        <div class="package-content">
+                            <h3 class="package-title">Manali Snow Adventure</h3>
+                            <p class="package-duration">5 Days / 4 Nights · Corporate Favourite</p>
+                            <p class="package-desc">
+                                Snow-capped peaks, Solang Valley and adventure activities.
+                                Suitable for office teams and students who want a structured snow itinerary
+                                with planned free time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Kerala -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="package-card">
+                        <div style="position: relative;">
+                            <!-- Kerala backwaters / houseboat -->
+                            <img 
+                                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80"
+                                alt="Kerala Backwaters" 
+                                class="package-image img-fluid"
+                                loading="lazy"
+                            >
+                            <div class="price-badge">From ₹9,999</div>
+                        </div>
+                        <div class="package-content">
+                            <h3 class="package-title">Kerala Backwater Escape</h3>
+                            <p class="package-duration">4 Days / 3 Nights · Relaxed Circuit</p>
+                            <p class="package-desc">
+                                Alleppey backwaters, houseboat stay and nearby sightseeing.
+                                Great for family groups and staff tours looking for a calm, scenic experience.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="find">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">How It Works</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="50">
+                A simple three-step flow that can be replicated in your Zoho SalesIQ bot for group travel enquiries.
+            </p>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Browse Featured Packages</h3>
+                        <p class="step-description">
+                            Visitors review sample itineraries for Goa, Manali and Kerala with clear pricing ranges.
+                            Each package can be adapted for headcount, dates and transport mode from the bot itself.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <p class="step-description">
+                            The AI chatbot collects group details, suggests itineraries and refines stay,
+                            food and travel options. This reduces manual calls and back-and-forth messages.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Confirm & Share Docs</h3>
+                        <p class="step-description">
+                            Once the plan is finalised, the system can generate a summary,
+                            cost sheet and invoice – ready to share with management, parents or HR teams.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+            <div class="contact-card" data-aos="zoom-in">
+                <div class="row g-4 align-items-start">
+                    <div class="col-md-6">
+                        <div class="contact-info">
+                            <p class="contact-label">Phone</p>
+                            <p class="contact-value"><a href="tel:+918778497142">+91 87784 97142</a></p>
+                        </div>
+                        <div class="contact-info">
+                            <p class="contact-label">Email</p>
+                            <p class="contact-value"><a href="mailto:aasanth2712@gmail.com">asanth2712@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact-note">
+                            <p>
+                                For college / office / family group tours, share your preferred dates,
+                                starting location and approximate headcount. We’ll suggest a clear, structured
+                                plan that’s easy to present and approve.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,
+            once: true,
+            offset: 80
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Chat bubble scroll to contact
+        const chatBubble = document.querySelector('.chat-bubble');
+        if (chatBubble) {
+            chatBubble.addEventListener('click', function() {
+                document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+<script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siq75eb323d2bb7c0215b73c99a1e397f6d9c4c485d5e3b3f3c1adcec88e58d5d69" defer></script>
+    <!-- TODO: Paste Zoho SalesIQ widget script here -->
+</body>
+</html>
